@@ -29,7 +29,10 @@
         <br/>
         <div>
             <a href="/rango/">Index</a><br />
-            <a href="/rango/category/{{category.slug}}/add_page/">Add Page</a> <br />
+
+            {% if category %}
+                <a href="{% url 'add_page' category.slug %}">Add page</a>
+            {% endif %}
         </div>
 
 	</body>
