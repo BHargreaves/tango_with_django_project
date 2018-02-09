@@ -1,41 +1,38 @@
-<!DOCTYPE html>
-
+{% extends 'rango/base.html' %}
 {% load staticfiles %} <!-- New line -->
 
-<html>
+{% block title_block %}
+    Index
+{% endblock %}
 
-	<head>
-		<title>Rango</title>
-	</head>
+{% block body_block %}
+	<h1>Rango says...</h1>
+	<div>
+		hey there partner! <br />
+		<strong>{{ boldmessage }}</strong><br />
+	</div>
 
-	<body>
-		<h1>Rango says...</h1>
-		<div>
-			hey there partner! <br />
-			<strong>{{ boldmessage }}</strong><br />
-		</div>
+     <h2>Most Liked Categories</h2>
+     <div>
+        {% if categories %}
+        <ul?>
+            {% for category in categories %}
+                <li>
+                    <a href="{% url 'show_category' category.slug %}">{{ category.name }}</a>
+                    <!-- New line -->
+                </li>
+            {% endfor %}
+        </ul?>
+        {% else %}
+            <strong>There are no categories present.</strong>
+        {% endif %}
+     </div>
 
-        <h2>Most Liked Categories</h2>
-        <div>
-            {% if categories %}
-            <ul?>
-                {% for category in categories %}
-                    <li>
-                        <a href="/rango/category/{{ category.slug }}"</a>{{category.name}}
-                        <!-- New line -->
-                    </li>
-                {% endfor %}
-            </ul?>
-            {% else %}
-                <strong>There are no categories present.</strong>
-            {% endif %}
-        </div>
-
-        <br />
+     <br />
         <!-- New line -->
-        <h2>Most Viewed Pages</h2>
-        <div>
-            {% if pages%}
+     <h2>Most Viewed Pages</h2>
+     <div>
+        {% if pages%}
             <ul?>
                 {% for page in pages %}
                     <li>
@@ -49,11 +46,8 @@
         </div>
 		<br/>
 		<div>
-			<a href="/rango/about/">About</a><br />
-            <a href="/rango/add_category">Add a New Category</a><br />
 			<img src="{% static "images/rango.jpg" %}"
 			alt="Picture of Rango" /> <!-- New line -->
 		</div>
-	</body>
 
-</html>
+{% endblock %}
